@@ -1,4 +1,4 @@
-# Instacart_prediction_of_next_basket
+# Instacart_prediction_of_the_next_basket
 This repository contains notebook which intends to solve the task of the next basket prediction basing on provided data of transactions and products
 
 The target was to cross score 0.25 in the Kaggle competition https://www.kaggle.com/competitions/skillbox-recommender-system/submissions
