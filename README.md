@@ -17,3 +17,7 @@ Main.py contains recsys class with methods:
  * get prediction for several users (used parallel counting)
  * update transactions and products
  * retrain model
+
+
+To try this recsys just launch Run_it.py
+Prepared_data.csv for demonstration
