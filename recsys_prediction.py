@@ -8,26 +8,20 @@ import lightgbm as lgb
 from lightgbm import LGBMClassifier
 import pathlib
 from pathlib import Path 
+import warnings
 
-# def load_model(path_to_model):
-#     """функция загружает предобученный алгоритм"""
-#     with open(path_to_model, 'rb') as file:
-#         model = pickle.load(file)
-#     return model
+warnings.simplefilter('ignore')
 
 class Recsys:
 #     num_recs: int
 #     df_re: DataFrame
 
-    def __init__(self, num_recs = 10          
-#                   path = "/client_part_recsys/"
-                ):
+    def __init__(self, num_recs = 10):
         self.path = pathlib.Path.cwd()
         self.num_recs = num_recs
         self.df_products = pd.read_csv(Path(self.path,'products.csv'))
         self.df_transactions = pd.read_csv(Path(self.path,'transactions.csv'))
         self.df_re = self.df_transactions[['user_id', 'order_id', 'order_number', 'product_id']]
-#         self.model = load_model()
         self.cpu_count = multiprocessing.cpu_count()
         # загрузка предобученного датасета
         self.prepared_data = pd.read_csv(Path(self.path,'prepared_data.csv'))
@@ -187,10 +181,9 @@ class Recsys:
                      class_weight = {0:0.7, 1:0.3}
                    )   
         lg.fit(X_train, y_train)
-#         self.model.fit(X_train, y_train)
         pkl_filename = 'lg.pkl'
         with open(pkl_filename, 'wb') as file:
-            pickle.dump(self.model, file)
+            pickle.dump(lg, file)
         print("Training finished")
         return 'success'
 
